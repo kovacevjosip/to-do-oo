@@ -50,7 +50,7 @@ UI.prototype.renderListItem = function (item) {
 
     li = createElement('LI');
     p = createElement('P', item.name);
-    span = createElement('SPAN', ' task ' + item.id);
+    span = createElement('SPAN', item.type + ' task ' + item.id);
 
     p.appendChild(span);
     li.appendChild(p);

@@ -4,21 +4,26 @@
 <head>
     <meta charset="utf-8">
     <title>ToDo List</title>
+
+    <link rel="stylesheet" href="./css/default.css">
 </head>
 
 <body>
-    <form name="todo">
-        <input type="text" name="name" placeholder="Add new ToDo item"><br>
-        <select>
-            <option disabled selected> -- select an option -- </option>
-            <option value="private">Private</option>
-            <option value="buissiness">Buissines</option>
-        </select>
-    </form>
-    <button id="addItem">New Item</button>
-    
+    <div id="form-container">
+        <form name="todo">
+            <input type="text" name="name" placeholder="Add new ToDo item">
+            <br>
+            <select>
+                <option disabled selected> -- select an option -- </option>
+                <option value="private">Private</option>
+                <option value="buissiness">Buissines</option>
+            </select>
+        </form>
+        <button id="addItem">New Item</button>
+    </div>
+
     <ul id="todo">
-        
+
     </ul>
 
     <script type="text/javascript" src="./js/app.js"></script>
