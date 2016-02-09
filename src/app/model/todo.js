@@ -1,3 +1,5 @@
+/* global UI, Item */
+
 // Constructor
 function ToDo() {
     this.reset();
@@ -22,6 +24,5 @@ ToDo.prototype.addItem = function (name, type) {
 
 // Initialize application
 ToDo.prototype.init = function () {
-    this.ui.elements();
     this.ui.bindClickListeners();
 };
