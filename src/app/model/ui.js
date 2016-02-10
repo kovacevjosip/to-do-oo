@@ -9,7 +9,7 @@ function UI() {
     };
 }
 
-// Bind all event listeners
+// Bind all available event listeners from DOM
 UI.prototype.bindClickListeners = function () {
     var self = this, // Reference self
         addItem = this.elements.addItem;
