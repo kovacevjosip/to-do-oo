@@ -8,6 +8,7 @@
     padding: 10px;
     
     li {
+        position: relative;
         padding: 10px 10px;
         margin-bottom: 2px;
         background-color: lightgray;
@@ -17,6 +18,26 @@
         span {
             float: right;
             font-style: italic;
+        }
+        
+        div {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: white;
+            border-radius: 5px;
+            
+            span {
+                float: left;
+                width: 30%;
+                height: 100%;
+                margin-right: 3.33%;
+                background-color: darkslategray;
+                color: white;
+                text-align: center;
+            }
         }
     }
 }
