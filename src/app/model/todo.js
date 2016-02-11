@@ -22,6 +22,20 @@ ToDo.prototype.addItem = function (name, type) {
     this.ui.renderListItem(item);
 };
 
+// Remove item from list
+ToDo.prototype.removeItem = function (id) {
+    var item, i;
+    
+    // Loop all items
+    for (i = 0; i < this.itemList.length; i++) {
+        item = this.itemList[i];
+        if (item.id === id) {
+            this.itemList.splice(this.itemList.indexOf(item), 1);
+            i--;
+        }
+    }
+};
+
 // Initialize application
 ToDo.prototype.init = function () {
     this.ui.bindClickListeners();

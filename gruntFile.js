@@ -49,6 +49,13 @@ module.exports = function (grunt) {
                   '<%= settings.dirs.src %>/app/_outro.js'
                 ],
                 dest: '<%= settings.dirs.src %>/js/app.js'
+            },
+            // Dependencies
+            dep: {
+                src: [
+                    '<%= settings.dirs.npm %>/velocity-animate/velocity.js',
+                ],
+                dest: '<%= settings.dirs.src %>/js/dep.js'
             }
         },
         
@@ -144,6 +151,7 @@ module.exports = function (grunt) {
     
     // Develop task
     grunt.registerTask('dev', [
+        'concat:dep',
         'concat:app',
         'clean:dev',
         'copy:dev_assets',

@@ -48,67 +48,58 @@ UI.prototype.createElement = function (name, value) {
 // Render new item
 UI.prototype.renderListItem = function (item) {
     var self = this,
-        li, p, span;
+        li, p, span,
+        options;
     
     // Create list element
     li = this.createElement('LI');
     p = this.createElement('P', item.name);
     span = this.createElement('SPAN', item.type + ' task ' + item.id);
     
+    // Create option settings
+    options = this.createElement('DIV');
+    options.appendChild(this.createElement('SPAN', 'EDIT'));
+    options.appendChild(this.createElement('SPAN', 'DONE'));
+    options.appendChild(this.createElement('SPAN', 'DELETE'));
+    
+    // Bind click listener on options
+    options.addEventListener('click', function (e) {
+        // Stop event propagation
+        e.stopPropagation();
+
+        var type = e.target.tagName === 'SPAN' ? e.target.textContent : '';
+
+        if (type) self.updateListItem(type, options, li, item);
+    });
+    
     // Bind click listener on list item
     li.addEventListener('click', function (e) {
-        self.settingsBuilder(this, item);
+        //options.style.display = 'block';
+        Velocity(options, 'fadeIn', {duration: 500});
     });
 
     // Append list element in DOM
     p.appendChild(span);
     li.appendChild(p);
+    li.appendChild(options);
     this.elements.ul.appendChild(li);
 };
 
 // Edit, delete or move to done
-UI.prototype.updateListItem = function (type, topElement, liElement, item) {
+UI.prototype.updateListItem = function (type, optionsElement, liElement, item) {
     switch (type) {
         case 'EDIT':
             break;
         case 'DONE':
             break;
         case 'DELETE':
-            // TODO: make method in todo.js that will delete element from array
-            // pass only one parameter, item ID
+            todo.removeItem(item.id);
             liElement.parentNode.removeChild(liElement);
             break;
         default:
             break;
     }
 
-    topElement.style.display = 'none';
-    console.log(type);
-    console.log(todo.itemList);
-};
-
-// Build HTML element on top list item
-UI.prototype.settingsBuilder = function (liElement, item) {
-    var self = this,
-        rootDiv = this.createElement('DIV'),
-        span1 = this.createElement('SPAN', 'EDIT'),
-        span2 = this.createElement('SPAN', 'DONE'),
-        span3 = this.createElement('SPAN', 'DELETE');
-    
-    // Append spans to div
-    rootDiv.appendChild(span1);
-    rootDiv.appendChild(span2);
-    rootDiv.appendChild(span3);
-
-    rootDiv.addEventListener('click', function (e) {
-        // Stop event propagation
-        e.stopPropagation();
-
-        var type = e.target.tagName === 'SPAN' ? e.target.textContent : '';
-
-        if (type) self.updateListItem(type, rootDiv, liElement, item);
-    });
-
-    // Append div to list element
-    liElement.appendChild(rootDiv);
+    //optionsElement.style.display = 'none';
+    Velocity(optionsElement, 'fadeOut', {duration: 500});
 };
