@@ -16,7 +16,7 @@ ToDo.prototype.reset = function () {
 // Add new item
 ToDo.prototype.addItem = function (name, type) {
     var item = new Item(this.itemListCount++, name, type); // Create new object
-    
+
     // Add object to array and render
     this.itemList.push(item);
     this.ui.renderListItem(item);
@@ -24,14 +24,32 @@ ToDo.prototype.addItem = function (name, type) {
 
 // Remove item from list
 ToDo.prototype.removeItem = function (id) {
-    var item, i;
-    
+    var list = this.itemList,
+        len = list.length,
+        item, i;
+
     // Loop all items
-    for (i = 0; i < this.itemList.length; i++) {
-        item = this.itemList[i];
+    for (i = 0; i < len; i++) {
+        item = list[i];
         if (item.id === id) {
-            this.itemList.splice(this.itemList.indexOf(item), 1);
-            i--;
+            list.splice(list.indexOf(item), 1);
+            return;
+        }
+    }
+};
+
+// Update completed status
+ToDo.prototype.updateStatus = function (id) {
+    var list = this.itemList,
+        len = list.length,
+        item, i;
+
+    // Loop all items
+    for (i = 0; i < len; i++) {
+        item = list[i];
+        if (item.id === id) {
+            item.completed = true;
+            return;
         }
     }
 };

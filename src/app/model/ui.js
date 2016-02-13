@@ -4,6 +4,7 @@ function UI() {
     // Cache DOM elements
     this.elements = {
         ul: document.getElementById('todo'),
+        ulDone: document.getElementById('done'),
         addItem: document.getElementById('addItem'),
         form: document.forms.todo
     };
@@ -58,6 +59,7 @@ UI.prototype.renderListItem = function (item) {
     
     // Create option settings
     options = this.createElement('DIV');
+    options.classList.add('options');
     options.appendChild(this.createElement('SPAN', 'EDIT'));
     options.appendChild(this.createElement('SPAN', 'DONE'));
     options.appendChild(this.createElement('SPAN', 'DELETE'));
@@ -75,7 +77,7 @@ UI.prototype.renderListItem = function (item) {
     // Bind click listener on list item
     li.addEventListener('click', function (e) {
         //options.style.display = 'block';
-        Velocity(options, 'fadeIn', {duration: 500});
+        Velocity(options, 'fadeIn', { duration: 500 });
     });
 
     // Append list element in DOM
@@ -91,6 +93,10 @@ UI.prototype.updateListItem = function (type, optionsElement, liElement, item) {
         case 'EDIT':
             break;
         case 'DONE':
+            todo.updateStatus(item.id);
+            liElement.parentNode.removeChild(liElement);
+            liElement.removeChild(liElement.querySelector('.options'));
+            this.elements.ulDone.appendChild(liElement);
             break;
         case 'DELETE':
             todo.removeItem(item.id);
@@ -101,5 +107,6 @@ UI.prototype.updateListItem = function (type, optionsElement, liElement, item) {
     }
 
     //optionsElement.style.display = 'none';
-    Velocity(optionsElement, 'fadeOut', {duration: 500});
+    Velocity(optionsElement, 'fadeOut', { duration: 500 });
+    console.log(todo.itemList);
 };

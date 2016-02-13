@@ -1,4 +1,4 @@
-#todo {
+.list {
     width: 400px;
     box-shadow: 5px 5px 5px black;
     margin: 0 auto;
@@ -20,7 +20,7 @@
             font-style: italic;
         }
         
-        div {
+        div.options {
             display: none;
             position: absolute;
             top: 0;
@@ -41,4 +41,8 @@
             }
         }
     }
+}
+
+.list {
+    
 }
