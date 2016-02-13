@@ -98,7 +98,6 @@ module.exports = function (grunt) {
             dev: {
                 options: {
                     style: 'compressed',
-                    sourcemap: 'file',
                     unixNewlines: true,
                     noCache: true
                 },
